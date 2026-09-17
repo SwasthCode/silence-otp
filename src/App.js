@@ -23,7 +23,7 @@ const App = () => {
         {
           size: "invisible",
           callback: (response) => {
-            onSignup();
+            // reCAPTCHA solved
           },
           "expired-callback": () => {
             toast.error("Captcha expired, please try again.");
@@ -52,6 +52,10 @@ const App = () => {
         console.error(error);
         setLoading(false);
         toast.error("Failed to send OTP. Please try again.");
+        if (window.recaptchaVerifier) {
+          window.recaptchaVerifier.clear();
+          window.recaptchaVerifier = null;
+        }
       });
     // console.log('meassage')
   }
