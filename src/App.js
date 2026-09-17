@@ -51,7 +51,7 @@ const App = () => {
       .catch((error) => {
         console.error(error);
         setLoading(false);
-        toast.error("Failed to send OTP. Please try again.");
+        toast.error(`Error: ${error.message}`);
         if (window.recaptchaVerifier) {
           window.recaptchaVerifier.clear();
           window.recaptchaVerifier = null;
